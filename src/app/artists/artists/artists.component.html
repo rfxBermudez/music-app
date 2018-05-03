@@ -1,0 +1,21 @@
+<div class="usuario">
+	<div class="page-title row">
+		<h2 class="col-5">Artists</h2>
+	</div>
+	<div class="products row">
+		<ul class="col-6">
+			<li *ngFor="let artist of artists" class="row usuario-display">
+				<app-artist-display [artist]='artist' 
+				(deleteArtist)="deleteArtist($event)" 
+				(editArtist)="editArtist($event)" class="col-12 card">
+				</app-artist-display>
+			</li>
+		</ul>	
+		<ul class="col-4 offset-1">
+			<app-artist-add (addArtist)="addArtist($event)" (editArtist)="editArtistSave($event)" [selectedArtist]="selectedArtist" [canAdd]='!loading'></app-artist-add>
+			<div *ngIf="loading">
+				loading...
+			</div>
+		</ul>
+	</div>
+</div>

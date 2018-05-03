@@ -1,0 +1,36 @@
+<form [formGroup]="artistForm" (ngSubmit)="onSubmit()" novalidate>
+	<div class="form-group">
+		<label class="center-block">Name
+			<input class="form-control" formControlName="name">
+		</label>
+		<div *ngIf="!artistForm.controls['name'].valid && (artistForm.controls['name'].dirty || artistForm.controls['name'].touched)" class="alert alert-danger">
+			<div *ngIf="artistForm.controls['name'].errors.required">
+				Required
+			</div>
+			<div *ngIf="artistForm.controls['name'].errors.minlength">
+				minLength 1 
+			</div>
+			<div *ngIf="artistForm.controls['name'].errors.maxlength">
+				maxLength 50
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="center-block">Email
+			<input class="form-control" formControlName="email">
+		</label>
+		<div *ngIf="artistForm.controls['email'].invalid && (artistForm.controls['email'].dirty || artistForm.controls['email'].touched)" class="alert alert-danger">
+			<div *ngIf="artistForm.controls['email'].errors.required">
+				Required
+			</div>
+			<div *ngIf="artistForm.controls['email'].errors.patternInvalid">
+				Invalid format
+			</div>
+		</div>
+	</div>
+	<div>
+		<button type="submit"
+		[disabled]="artistForm.invalid " class="btn btn-success"><span *ngIf="!isEditing">Add</span><span *ngIf="isEditing">Edit</span></button> &nbsp;
+		<button type="reset" (click)="revert()" class="btn btn-danger">Clear</button>
+	</div>
+</form>

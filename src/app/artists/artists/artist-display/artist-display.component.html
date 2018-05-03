@@ -1,0 +1,20 @@
+<div class="row" [class.deleting]="isDeleting">
+	<div class="col-9">
+		<div class="row">
+			<div class="col-3">Name: </div><div class="col-9"> {{artist.name}}</div>
+		</div>
+		<div class="row">
+			<div class="col-3">Email: </div><div class="col-9"> {{artist.email}}</div>
+		</div>
+	</div>
+	<div class="col-3 actions">
+		<div class="row">
+			<div class="col-12 text-center">
+				<button type="button" class="btn btn-primary" (click)="editar()">Edit</button>
+			</div>
+			<div class="col-12 text-center">
+				<button type="button" class="btn btn-danger" (click)="borrar()"><span *ngIf="isDeleting">...</span><span *ngIf="!isDeleting">Delete</span></button>
+			</div>
+		</div>
+	</div>
+</div>
