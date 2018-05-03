@@ -13,7 +13,7 @@ export class AlbumAddComponent implements OnInit, OnChanges {
 	@Input() canAdd : boolean = true;
 	@Input('selectedAlbum') album : Album = new Album();
 	submitted = false;
-	requiredText : string = 'producto';
+	requiredText : string = 'album';
 	isEditing = false;
 
 	onSubmit(albumForm) {
