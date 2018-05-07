@@ -6,18 +6,20 @@ webpackJsonp(["main"],{
 var map = {
 	"app/albums/albums.module": [
 		"../../../../../src/app/albums/albums.module.ts",
-		"albums.module"
+		"albums.module",
+		"common"
 	],
 	"app/artists/artists.module": [
 		"../../../../../src/app/artists/artists.module.ts",
-		"artists.module"
+		"artists.module",
+		"common"
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -353,7 +355,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".active {\n\tcolor: red;\n\ttext-decoration: underline;\n}\n\n.routes {\n\tpadding-top: 7px;\n}\n\n.social a {\n\tcolor: black;\n\tfont-size: 30px;\n\tmargin-left: 10px;\n}", ""]);
+exports.push([module.i, ".active {\n\tcolor: red;\n\ttext-decoration: underline;\n}\n\n.routes {\n\tpadding-top: 7px;\n}", ""]);
 
 // exports
 

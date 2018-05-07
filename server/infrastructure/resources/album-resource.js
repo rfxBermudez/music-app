@@ -3,7 +3,7 @@ var await = require('asyncawait/await');
 var albumModel = require(__base + 'server/model/album');
 
 function getAlbums() {
-    var users = await(albumModel.find({}));
+    var users = await(albumModel.find({}).populate('artist'));
     return users;
 }
 

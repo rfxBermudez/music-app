@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { Album } from '../../../models/album';
+import { Artist } from '../../../models/artist';
 import { AlbumsService } from '../../services/albums.service';
  
 @Component({
@@ -12,6 +13,7 @@ export class AlbumAddComponent implements OnInit, OnChanges {
 	@Output() editAlbum = new EventEmitter<any>();
 	@Input() canAdd : boolean = true;
 	@Input('selectedAlbum') album : Album = new Album();
+	@Input() artists: Artist[] = [];
 	submitted = false;
 	requiredText : string = 'album';
 	isEditing = false;
@@ -23,6 +25,7 @@ export class AlbumAddComponent implements OnInit, OnChanges {
 				'form':albumForm
 			});
 			this.isEditing = false;
+			this.newAlbum();
 		} else {
 			this.addAlbum.emit({
 				'album':this.album,

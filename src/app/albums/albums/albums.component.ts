@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Album } from '../../models/album';
+import { Artist } from '../../models/artist';
 import { AlbumsService } from '../services/albums.service';
+import { ArtistsService } from '../../artists/services/artists.service';
 
 @Component({
 	selector: 'app-albums',
@@ -9,12 +11,14 @@ import { AlbumsService } from '../services/albums.service';
 })
 export class AlbumsComponent implements OnInit, AfterViewInit {
 	public albums : Album[];
+	public artists : Artist[];
 	public selectedAlbum : Album = new Album;
 	public loading : boolean = false;
-	constructor(private albumsService: AlbumsService) { }
+	constructor(private albumsService: AlbumsService, private artistsService: ArtistsService) { }
 
 	ngOnInit() {
 		this.getAlbums();
+		this.getArtist();
 	}
 
 	public editAlbum(album){
@@ -44,6 +48,15 @@ export class AlbumsComponent implements OnInit, AfterViewInit {
 	public getAlbums(){
 		this.albumsService.getAlbums().subscribe((data) => {
 				this.albums = data.album;
+			},(error)=>{
+				console.log('error',error);
+			});
+	}
+
+	public getArtist(){
+		this.artistsService.getArtists().subscribe((data) => {
+				this.artists = data.artist;
+				console.log(this.artists);
 			},(error)=>{
 				console.log('error',error);
 			});

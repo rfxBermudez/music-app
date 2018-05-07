@@ -14,15 +14,9 @@ import { Validator, AbstractControl, NG_VALIDATORS, FormControl } from '@angular
 export class TextContainsValidator implements Validator {
 	@Input('text-contains-validator') param:string; 
 	validate(control: AbstractControl) {
+		let regexp: RegExp
 		let text = control.value;
-		if (text && text.indexOf(this.param) == -1) {
-			return {
-				textContains: {
-					textContains: this.param
-				}
-			}
-		} else {
-			return null;
-		}
+		regexp = /^[^a-z]*$/ ;
+		return !regexp.test(text) ? { 'textMayus': { regexp } } : null;
 	}
 }

@@ -110,7 +110,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artists/artist-add/artist-add.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"artistForm\" (ngSubmit)=\"onSubmit()\" novalidate>\n\t<div class=\"form-group\">\n\t\t<label class=\"center-block\">Name\n\t\t\t<input class=\"form-control\" formControlName=\"name\">\n\t\t</label>\n\t\t<div *ngIf=\"!artistForm.controls['name'].valid && (artistForm.controls['name'].dirty || artistForm.controls['name'].touched)\" class=\"alert alert-danger\">\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.required\">\n\t\t\t\tRequired\n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.minlength\">\n\t\t\t\tminLength 1 \n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.maxlength\">\n\t\t\t\tmaxLength 50\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div class=\"form-group\">\n\t\t<label class=\"center-block\">Email\n\t\t\t<input class=\"form-control\" formControlName=\"email\">\n\t\t</label>\n\t\t<div *ngIf=\"artistForm.controls['email'].invalid && (artistForm.controls['email'].dirty || artistForm.controls['email'].touched)\" class=\"alert alert-danger\">\n\t\t\t<div *ngIf=\"artistForm.controls['email'].errors.required\">\n\t\t\t\tRequired\n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['email'].errors.patternInvalid\">\n\t\t\t\tInvalid format\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div>\n\t\t<button type=\"submit\"\n\t\t[disabled]=\"artistForm.invalid \" class=\"btn btn-success\"><span *ngIf=\"!isEditing\">Add</span><span *ngIf=\"isEditing\">Edit</span></button> &nbsp;\n\t\t<button type=\"reset\" (click)=\"revert()\" class=\"btn btn-danger\">Clear</button>\n\t</div>\n</form>"
+module.exports = "<form [formGroup]=\"artistForm\" (ngSubmit)=\"onSubmit()\" novalidate>\n\t<div class=\"form-group\">\n\t\t<label class=\"center-block\">Name\n\t\t\t<input class=\"form-control\" formControlName=\"name\">\n\t\t</label>\n\t\t<div *ngIf=\"!artistForm.controls['name'].valid && (artistForm.controls['name'].dirty || artistForm.controls['name'].touched)\" class=\"alert alert-danger\">\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.required\">\n\t\t\t\tRequired\n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.minlength\">\n\t\t\t\tminLength 1 \n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.maxlength\">\n\t\t\t\tmaxLength 50\n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['name'].errors.mayusInvalid\">\n\t\t\t\tMayusculas\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div class=\"form-group\">\n\t\t<label class=\"center-block\">Email\n\t\t\t<input class=\"form-control\" formControlName=\"email\">\n\t\t</label>\n\t\t<div *ngIf=\"artistForm.controls['email'].invalid && (artistForm.controls['email'].dirty || artistForm.controls['email'].touched)\" class=\"alert alert-danger\">\n\t\t\t<div *ngIf=\"artistForm.controls['email'].errors.required\">\n\t\t\t\tRequired\n\t\t\t</div>\n\t\t\t<div *ngIf=\"artistForm.controls['email'].errors.patternInvalid\">\n\t\t\t\tInvalid format\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div>\n\t\t<button type=\"submit\"\n\t\t[disabled]=\"artistForm.invalid \" class=\"btn btn-success\"><span *ngIf=\"!isEditing\">Add</span><span *ngIf=\"isEditing\">Edit</span></button> &nbsp;\n\t\t<button type=\"reset\" (click)=\"revert()\" class=\"btn btn-danger\">Clear</button>\n\t</div>\n</form>"
 
 /***/ }),
 
@@ -123,6 +123,7 @@ module.exports = "<form [formGroup]=\"artistForm\" (ngSubmit)=\"onSubmit()\" nov
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_artist__ = __webpack_require__("../../../../../src/app/models/artist.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_pattern_validator__ = __webpack_require__("../../../../../src/app/shared/pattern-validator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_mayus_validator__ = __webpack_require__("../../../../../src/app/shared/mayus-validator.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -132,6 +133,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -155,7 +157,8 @@ var ArtistAddComponent = /** @class */ (function () {
             name: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', [
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required,
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].minLength(1),
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].maxLength(50)
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].maxLength(50),
+                Object(__WEBPACK_IMPORTED_MODULE_4__shared_mayus_validator__["a" /* mayusValidator */])(/^[^a-z]*$/)
             ]),
             email: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required, Object(__WEBPACK_IMPORTED_MODULE_3__shared_pattern_validator__["a" /* patternValidator */])(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)])
         });
@@ -414,65 +417,20 @@ var ArtistsComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/artists/services/artists.service.ts":
+/***/ "../../../../../src/app/shared/mayus-validator.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ArtistsService = /** @class */ (function () {
-    function ArtistsService(dataService) {
-        this.dataService = dataService;
-    }
-    ArtistsService.prototype.getArtists = function () {
-        return this.dataService.get('/api/artists');
+/* harmony export (immutable) */ __webpack_exports__["a"] = mayusValidator;
+function mayusValidator(regexp) {
+    return function (control) {
+        var value = control.value;
+        if (value === '') {
+            return null;
+        }
+        return !regexp.test(value) ? { 'mayusInvalid': { regexp: regexp } } : null;
     };
-    ArtistsService.prototype.addArtist = function (artist) {
-        return this.dataService.post('/api/artists', { 'artist': artist });
-    };
-    ArtistsService.prototype.deleteArtist = function (artist) {
-        return this.dataService.delete('/api/artists/' + artist._id);
-    };
-    ArtistsService.prototype.editArtist = function (artist) {
-        return this.dataService.put('/api/artists/' + artist._id, { 'artist': artist });
-    };
-    ArtistsService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]])
-    ], ArtistsService);
-    return ArtistsService;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/models/artist.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Artist; });
-var Artist = /** @class */ (function () {
-    function Artist() {
-        this._id = undefined;
-        this.name = '';
-        this.email = '';
-    }
-    return Artist;
-}());
-
+}
 
 
 /***/ }),

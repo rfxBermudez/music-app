@@ -9,7 +9,7 @@
 			</li>
 		</ul>	
 		<ul class="col-4 offset-1">
-			<app-album-add (addAlbum)="addAlbum($event)" (editAlbum)="editAlbumSave($event)" [selectedAlbum]="selectedAlbum" [canAdd]='!loading'></app-album-add>
+			<app-album-add (addAlbum)="addAlbum($event)" (editAlbum)="editAlbumSave($event)" [selectedAlbum]="selectedAlbum" [artists]='artists' [canAdd]='!loading'></app-album-add>
 			<div *ngIf="loading">
 				loading...
 			</div>

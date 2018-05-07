@@ -51,16 +51,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__albums_album_add_album_add_component__ = __webpack_require__("../../../../../src/app/albums/albums/album-add/album-add.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__albums_album_display_album_display_component__ = __webpack_require__("../../../../../src/app/albums/albums/album-display/album-display.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_albums_service__ = __webpack_require__("../../../../../src/app/albums/services/albums.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_text_contains_directive__ = __webpack_require__("../../../../../src/app/shared/text-contains.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__albums_routing_module__ = __webpack_require__("../../../../../src/app/albums/albums-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__amount_pipe__ = __webpack_require__("../../../../../src/app/amount.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__artists_services_artists_service__ = __webpack_require__("../../../../../src/app/artists/services/artists.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_text_contains_directive__ = __webpack_require__("../../../../../src/app/shared/text-contains.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__albums_routing_module__ = __webpack_require__("../../../../../src/app/albums/albums-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__amount_pipe__ = __webpack_require__("../../../../../src/app/amount.pipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -78,12 +80,12 @@ var AlbumsModule = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
-                __WEBPACK_IMPORTED_MODULE_8__albums_routing_module__["a" /* ProductosRoutingModule */],
-                __WEBPACK_IMPORTED_MODULE_7__angular_forms__["c" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_7__angular_forms__["e" /* ReactiveFormsModule */]
+                __WEBPACK_IMPORTED_MODULE_9__albums_routing_module__["a" /* ProductosRoutingModule */],
+                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["c" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["e" /* ReactiveFormsModule */]
             ],
-            declarations: [__WEBPACK_IMPORTED_MODULE_2__albums_albums_component__["a" /* AlbumsComponent */], __WEBPACK_IMPORTED_MODULE_3__albums_album_add_album_add_component__["a" /* AlbumAddComponent */], __WEBPACK_IMPORTED_MODULE_4__albums_album_display_album_display_component__["a" /* AlbumDisplayComponent */], __WEBPACK_IMPORTED_MODULE_6__shared_text_contains_directive__["a" /* TextContainsValidator */], __WEBPACK_IMPORTED_MODULE_9__amount_pipe__["a" /* AmountPipe */]],
-            providers: [__WEBPACK_IMPORTED_MODULE_5__services_albums_service__["a" /* AlbumsService */]]
+            declarations: [__WEBPACK_IMPORTED_MODULE_2__albums_albums_component__["a" /* AlbumsComponent */], __WEBPACK_IMPORTED_MODULE_3__albums_album_add_album_add_component__["a" /* AlbumAddComponent */], __WEBPACK_IMPORTED_MODULE_4__albums_album_display_album_display_component__["a" /* AlbumDisplayComponent */], __WEBPACK_IMPORTED_MODULE_7__shared_text_contains_directive__["a" /* TextContainsValidator */], __WEBPACK_IMPORTED_MODULE_10__amount_pipe__["a" /* AmountPipe */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_5__services_albums_service__["a" /* AlbumsService */], __WEBPACK_IMPORTED_MODULE_6__artists_services_artists_service__["a" /* ArtistsService */]]
         })
     ], AlbumsModule);
     return AlbumsModule;
@@ -114,7 +116,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/albums/albums/album-add/album-add.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form (ngSubmit)=\"onSubmit(albumForm)\" #albumForm=\"ngForm\">\n\t<div class=\"form-group\">\n\t\t<label for=\"name\">Name</label>\n\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\n\t\trequired\n\t\t[text-contains-validator]=\"requiredText\"\n\t\t[(ngModel)]=\"album.name\" name=\"nombre\"\n\t\t#name=\"ngModel\">\n\t\t<div [hidden]=\"name.valid || name.pristine\" class=\"alert alert-danger\">\n\t\t\t<div *ngIf=\"name.errors && name.errors.required\">\n\t\t\t\tRequired\n\t\t\t</div>\n\t\t\t<div *ngIf=\"name.errors && name.errors.textContains\">\n\t\t\t\tNot contains {{requiredText}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"form-group\">\n\t\t<label for=\"price\">Price</label>\n\t\t<input type=\"text\" \n\t\t\tclass=\"form-control\" \n\t\t\tid=\"price\" name=\"price\"\n\t\t\t[(ngModel)]=\"album.price\"  \n\t\t\t#price=\"ngModel\" \n\t\t\trequired pattern=\"[0-9]*\">\n\t\t<div [hidden]=\"price.valid || price.pristine\" class=\"alert alert-danger\" *ngIf=\"price.errors && price.errors.required\">\n\t\t\tRequired\n\t\t</div>\n\t\t<div [hidden]=\"price.valid || price.pristine\" class=\"alert alert-danger\" *ngIf=\"price.errors && price.errors.pattern\">\n\t\t\tMust be numeric\n\t\t</div>\n\t</div>\n\n\t<button type=\"submit\" class=\"btn btn-success\" [disabled]=\"!albumForm.form.valid || !canAdd\"><span *ngIf=\"!isEditing\">Add</span><span *ngIf=\"isEditing\">Edit</span></button>\n\t<button type=\"button\" class=\"btn btn-danger\" (click)=\"newAlbum(); albumForm.reset()\">Clear</button>\n</form>"
+module.exports = "<form (ngSubmit)=\"onSubmit(albumForm)\" #albumForm=\"ngForm\">\n\t<div class=\"form-group\">\n\t\t<label for=\"name\">Name</label>\n\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\n\t\trequired\n\t\t[text-contains-validator]\n\t\t[(ngModel)]=\"album.name\" name=\"nombre\"\n\t\t#name=\"ngModel\">\n\t\t<div [hidden]=\"name.valid || name.pristine\" class=\"alert alert-danger\">\n\t\t\t<div *ngIf=\"name.errors && name.errors.required\">\n\t\t\t\tRequired\n\t\t\t</div>\n\t\t\t<div *ngIf=\"name.errors && name.errors.textMayus\">\n\t\t\t\tMayusculas\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"form-group\">\n\t\t<label for=\"price\">Price</label>\n\t\t<input type=\"text\" \n\t\t\tclass=\"form-control\" \n\t\t\tid=\"price\" name=\"price\"\n\t\t\t[(ngModel)]=\"album.price\"  \n\t\t\t#price=\"ngModel\" \n\t\t\trequired pattern=\"[0-9]*\">\n\t\t<div [hidden]=\"price.valid || price.pristine\" class=\"alert alert-danger\" *ngIf=\"price.errors && price.errors.required\">\n\t\t\tRequired\n\t\t</div>\n\t\t<div [hidden]=\"price.valid || price.pristine\" class=\"alert alert-danger\" *ngIf=\"price.errors && price.errors.pattern\">\n\t\t\tMust be numeric\n\t\t</div>\n\t</div>\n\n\t<div class=\"form-group\">\n\t\t<label for=\"price\">Artist</label>\n\t\t <select id=\"artist\" #artist=\"ngModel\" class=\"hideLabel form-control\" [(ngModel)]=\"album.artist._id\" \n\t\t \t     name=\"artist\" required>\n            <option [ngValue]=\"art._id\" *ngFor=\"let art of artists\">{{art.name}}</option>  \n        </select>\n        <div [hidden]=\"artist.valid || artist.pristine\" class=\"alert alert-danger\" *ngIf=\"artist.errors && artist.errors.required\">\n\t\t\tRequired\n\t\t</div>\n\t</div>\n\n\n\t<button type=\"submit\" class=\"btn btn-success\" [disabled]=\"!albumForm.form.valid || !canAdd\"><span *ngIf=\"!isEditing\">Add</span><span *ngIf=\"isEditing\">Edit</span></button>\n\t<button type=\"button\" class=\"btn btn-danger\" (click)=\"newAlbum(); albumForm.reset()\">Clear</button>\n</form>"
 
 /***/ }),
 
@@ -142,8 +144,9 @@ var AlbumAddComponent = /** @class */ (function () {
         this.editAlbum = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
         this.canAdd = true;
         this.album = new __WEBPACK_IMPORTED_MODULE_1__models_album__["a" /* Album */]();
+        this.artists = [];
         this.submitted = false;
-        this.requiredText = 'producto';
+        this.requiredText = 'album';
         this.isEditing = false;
     }
     AlbumAddComponent.prototype.onSubmit = function (albumForm) {
@@ -153,6 +156,7 @@ var AlbumAddComponent = /** @class */ (function () {
                 'form': albumForm
             });
             this.isEditing = false;
+            this.newAlbum();
         }
         else {
             this.addAlbum.emit({
@@ -192,6 +196,10 @@ var AlbumAddComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('selectedAlbum'),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__models_album__["a" /* Album */])
     ], AlbumAddComponent.prototype, "album", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Array)
+    ], AlbumAddComponent.prototype, "artists", void 0);
     AlbumAddComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-album-add',
@@ -228,7 +236,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/albums/albums/album-display/album-display.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\t<div class=\"col-9\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-4\">Name: </div><div class=\"col-8\"> {{album.name}}</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-4\">Price: </div><div class=\"col-8\"> {{album.price | amount}}</div>\n\t\t</div>\n\t</div>\n\t<div class=\"col-3 actions\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-12 text-center\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"edit()\">Edit</button>\n\t\t\t</div>\n\t\t\t<div class=\"col-12 text-center\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-danger\" (click)=\"delete()\"><span *ngIf=\"isDeleting\">...</span><span *ngIf=\"!isDeleting\">Delete</span></button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"row\">\n\t<div class=\"col-9\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-4\">Name: </div><div class=\"col-8\"> {{album.name}}</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-4\">Artist: </div><div class=\"col-8\"> {{album.artist.name}}</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-4\">Price: </div><div class=\"col-8\"> {{album.price | amount}}</div>\n\t\t</div>\n\t</div>\n\t<div class=\"col-3 actions\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-12 text-center\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"edit()\">Edit</button>\n\t\t\t</div>\n\t\t\t<div class=\"col-12 text-center\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-danger\" (click)=\"delete()\"><span *ngIf=\"isDeleting\">...</span><span *ngIf=\"!isDeleting\">Delete</span></button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -313,7 +321,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/albums/albums/albums.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"productos\">\n\t<div class=\"page-title row\">\n\t\t<h2 class=\"col-5\">Albums</h2>\n\t</div>\n\t<div class=\"products row\">\n\t\t<ul class=\"col-6\">\n\t\t\t<li *ngFor=\"let album of albums\" class=\"row producto-display\">\n\t\t\t\t<app-album-display [album]='album' (deleteAlbum)=\"deleteAlbum($event)\" (editAlbum)=\"editAlbum($event)\" class=\"col-12 card\"></app-album-display>\n\t\t\t</li>\n\t\t</ul>\t\n\t\t<ul class=\"col-4 offset-1\">\n\t\t\t<app-album-add (addAlbum)=\"addAlbum($event)\" (editAlbum)=\"editAlbumSave($event)\" [selectedAlbum]=\"selectedAlbum\" [canAdd]='!loading'></app-album-add>\n\t\t\t<div *ngIf=\"loading\">\n\t\t\t\tloading...\n\t\t\t</div>\n\t\t</ul>\n\t</div>\n</div>\n"
+module.exports = "<div class=\"productos\">\n\t<div class=\"page-title row\">\n\t\t<h2 class=\"col-5\">Albums</h2>\n\t</div>\n\t<div class=\"products row\">\n\t\t<ul class=\"col-6\">\n\t\t\t<li *ngFor=\"let album of albums\" class=\"row producto-display\">\n\t\t\t\t<app-album-display [album]='album' (deleteAlbum)=\"deleteAlbum($event)\" (editAlbum)=\"editAlbum($event)\" class=\"col-12 card\"></app-album-display>\n\t\t\t</li>\n\t\t</ul>\t\n\t\t<ul class=\"col-4 offset-1\">\n\t\t\t<app-album-add (addAlbum)=\"addAlbum($event)\" (editAlbum)=\"editAlbumSave($event)\" [selectedAlbum]=\"selectedAlbum\" [artists]='artists' [canAdd]='!loading'></app-album-add>\n\t\t\t<div *ngIf=\"loading\">\n\t\t\t\tloading...\n\t\t\t</div>\n\t\t</ul>\n\t</div>\n</div>\n"
 
 /***/ }),
 
@@ -325,6 +333,7 @@ module.exports = "<div class=\"productos\">\n\t<div class=\"page-title row\">\n\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_album__ = __webpack_require__("../../../../../src/app/models/album.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_albums_service__ = __webpack_require__("../../../../../src/app/albums/services/albums.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__artists_services_artists_service__ = __webpack_require__("../../../../../src/app/artists/services/artists.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -337,14 +346,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AlbumsComponent = /** @class */ (function () {
-    function AlbumsComponent(albumsService) {
+    function AlbumsComponent(albumsService, artistsService) {
         this.albumsService = albumsService;
+        this.artistsService = artistsService;
         this.selectedAlbum = new __WEBPACK_IMPORTED_MODULE_1__models_album__["a" /* Album */];
         this.loading = false;
     }
     AlbumsComponent.prototype.ngOnInit = function () {
         this.getAlbums();
+        this.getArtist();
     };
     AlbumsComponent.prototype.editAlbum = function (album) {
         this.selectedAlbum = Object.assign({}, album);
@@ -377,6 +389,15 @@ var AlbumsComponent = /** @class */ (function () {
             console.log('error', error);
         });
     };
+    AlbumsComponent.prototype.getArtist = function () {
+        var _this = this;
+        this.artistsService.getArtists().subscribe(function (data) {
+            _this.artists = data.artist;
+            console.log(_this.artists);
+        }, function (error) {
+            console.log('error', error);
+        });
+    };
     AlbumsComponent.prototype.addAlbum = function (album) {
         var _this = this;
         this.loading = true;
@@ -399,7 +420,7 @@ var AlbumsComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/albums/albums/albums.component.html"),
             styles: [__webpack_require__("../../../../../src/app/albums/albums/albums.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_albums_service__["a" /* AlbumsService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_albums_service__["a" /* AlbumsService */], __WEBPACK_IMPORTED_MODULE_3__artists_services_artists_service__["a" /* ArtistsService */]])
     ], AlbumsComponent);
     return AlbumsComponent;
 }());
@@ -492,11 +513,14 @@ var AmountPipe = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Album; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_artist__ = __webpack_require__("../../../../../src/app/models/artist.ts");
+
 var Album = /** @class */ (function () {
     function Album() {
         this._id = undefined;
         this.name = '';
         this.price = 0;
+        this.artist = new __WEBPACK_IMPORTED_MODULE_0__models_artist__["a" /* Artist */]();
     }
     return Album;
 }());
@@ -528,17 +552,10 @@ var TextContainsValidator = /** @class */ (function () {
     }
     TextContainsValidator_1 = TextContainsValidator;
     TextContainsValidator.prototype.validate = function (control) {
+        var regexp;
         var text = control.value;
-        if (text && text.indexOf(this.param) == -1) {
-            return {
-                textContains: {
-                    textContains: this.param
-                }
-            };
-        }
-        else {
-            return null;
-        }
+        regexp = /^[^a-z]*$/;
+        return !regexp.test(text) ? { 'textMayus': { regexp: regexp } } : null;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('text-contains-validator'),

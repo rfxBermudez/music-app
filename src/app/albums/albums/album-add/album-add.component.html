@@ -3,15 +3,15 @@
 		<label for="name">Name</label>
 		<input type="text" class="form-control" id="name"
 		required
-		[text-contains-validator]="requiredText"
+		[text-contains-validator]
 		[(ngModel)]="album.name" name="nombre"
 		#name="ngModel">
 		<div [hidden]="name.valid || name.pristine" class="alert alert-danger">
 			<div *ngIf="name.errors && name.errors.required">
 				Required
 			</div>
-			<div *ngIf="name.errors && name.errors.textContains">
-				Not contains {{requiredText}}
+			<div *ngIf="name.errors && name.errors.textMayus">
+				Mayusculas
 			</div>
 		</div>
 	</div>
@@ -31,6 +31,18 @@
 			Must be numeric
 		</div>
 	</div>
+
+	<div class="form-group">
+		<label for="price">Artist</label>
+		 <select id="artist" #artist="ngModel" class="hideLabel form-control" [(ngModel)]="album.artist._id" 
+		 	     name="artist" required>
+            <option [ngValue]="art._id" *ngFor="let art of artists">{{art.name}}</option>  
+        </select>
+        <div [hidden]="artist.valid || artist.pristine" class="alert alert-danger" *ngIf="artist.errors && artist.errors.required">
+			Required
+		</div>
+	</div>
+
 
 	<button type="submit" class="btn btn-success" [disabled]="!albumForm.form.valid || !canAdd"><span *ngIf="!isEditing">Add</span><span *ngIf="isEditing">Edit</span></button>
 	<button type="button" class="btn btn-danger" (click)="newAlbum(); albumForm.reset()">Clear</button>

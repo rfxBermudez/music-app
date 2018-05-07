@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Artist } from '../../../models/artist';
 import { patternValidator } from '../../../shared/pattern-validator';
+import { mayusValidator } from '../../../shared/mayus-validator';
 
 @Component({
 	selector: 'app-artist-add',
@@ -29,7 +30,8 @@ export class ArtistAddComponent implements OnInit {
 			name: new FormControl('', [
 				Validators.required, 
 				Validators.minLength(1), 
-				Validators.maxLength(50)
+				Validators.maxLength(50),
+				mayusValidator(/^[^a-z]*$/)
 			]),
 			email: new FormControl('', [Validators.required,patternValidator(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)])
 		});
